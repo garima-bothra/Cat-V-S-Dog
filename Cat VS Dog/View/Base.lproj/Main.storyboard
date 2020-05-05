@@ -85,11 +85,44 @@
                     <navigationItem key="navigationItem" id="vOA-Z1-Wrx"/>
                     <connections>
                         <outlet property="cameraButton" destination="SXs-V6-9FI" id="5XN-SX-f8z"/>
+                        <segue destination="EVb-HU-HY9" kind="show" identifier="goToImageView" id="q37-8V-Bq2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8a-CG-aN6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="379.71014492753625" y="130.58035714285714"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="BIR-Fw-VeD">
+            <objects>
+                <viewController id="EVb-HU-HY9" customClass="ImageViewController" customModule="Cat_VS_Dog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S0k-Xe-ttz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AWK-Rk-wlg">
+                                <rect key="frame" x="175" y="416" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="URR-Ba-9jl"/>
+                                    <constraint firstAttribute="height" constant="64" id="hdE-hD-OOM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="centerX" secondItem="S0k-Xe-ttz" secondAttribute="centerX" id="6OQ-g2-w2i"/>
+                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="centerY" secondItem="S0k-Xe-ttz" secondAttribute="centerY" id="VpK-ea-BiB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="v0m-n7-170"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kPc-Vk-WGn"/>
+                    <connections>
+                        <outlet property="previewImageView" destination="AWK-Rk-wlg" id="rlc-4z-rXf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x60-m5-D0M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1098.5507246376812" y="129.91071428571428"/>
         </scene>
     </scenes>
 </document>

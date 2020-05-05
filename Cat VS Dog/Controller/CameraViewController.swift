@@ -9,9 +9,10 @@
 import UIKit
 import AVKit
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
     //Create variables
+    var croppedImage = UIImage()
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
     var frontCamera: AVCaptureDevice?
@@ -22,34 +23,72 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        cameraButton.layer.cornerRadius = cameraButton.frame.height/2
+
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
-        addBlur()
-
+        //addBlur()
+        cameraButton.layer.cornerRadius = cameraButton.frame.height/2
+        cameraButton.backgroundColor = UIColor.white
 
         // Do any additional setup after loading the view.
     }
 
     @IBAction func cameraButtonPressed(_ sender: Any) {
-        let photoSettings: AVCapturePhotoSettings
-        if ((self.photoOutput?.availablePhotoCodecTypes.contains(.hevc)) != nil) {
-            photoSettings = AVCapturePhotoSettings(format:
-                [AVVideoCodecKey: AVVideoCodecType.hevc])
-        } else {
-            photoSettings = AVCapturePhotoSettings()
-        }
-        photoSettings.flashMode = .auto
-        photoSettings.isAutoStillImageStabilizationEnabled =
-            ((self.photoOutput?.isStillImageStabilizationSupported) != nil)
-      //  let captureProcessor = PhotoCaptureProcessor()
-      //  self.photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)
+        let settings = AVCapturePhotoSettings()
+        photoOutput?.capturePhoto(with: settings, delegate: self)
+
 
     }
 
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let imageData = photo.fileDataRepresentation() {
+            print(imageData)
+            let image = UIImage(data: imageData)
+            //croppedImage = cropImage(image: image!, rect: drawFrame())
+            croppedImage = resizedImageWith(image: image!)
+            self.performSegue(withIdentifier: "goToImageView", sender: nil)
+        }
+    }
+
+    func resizedImageWith(image: UIImage) -> UIImage {
+
+        let imageSize = image.size
+        let newWidth  =  64 / image.size.width
+        let newHeight = 64 / image.size.height
+        var newSize: CGSize
+        newSize = CGSize(width: 64,  height: 64)
+        let rect = CGRect(x: 0, y: 0, width: 64, height: 64)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+
+    func cropImage(image: UIImage, rect: CGRect) -> UIImage {
+        let cgImage = image.cgImage!
+        let croppedCGImage = cgImage.cropping(to: rect)
+        return UIImage(cgImage: croppedCGImage!)
+    }
+
+    func drawFrame () -> CGRect {
+        let rectX = self.view.frame.width/2 - 32
+        let rectY = self.view.frame.height/2 - 32
+        // Create a CGRect object which is used to render a rectangle.
+        let rectFrame: CGRect = CGRect(x: rectX, y: rectY, width: 64, height: 64)
+        return rectFrame
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       // if segue.identifier == "goToImageView" {
+           let previewController = segue.destination as! ImageViewController
+            print(croppedImage)
+            previewController.previewImage = croppedImage
+       // }
+    }
 }
 
 extension CameraViewController {
@@ -77,7 +116,9 @@ extension CameraViewController {
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
-            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
+            photoOutput = AVCapturePhotoOutput()
+            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])], completionHandler: nil)
+            captureSession.addOutput(photoOutput!)
         } catch {
             print(error)
         }
