@@ -21,7 +21,13 @@ class ImageViewController: UIViewController {
     
     func setupImageView() {
         print(previewImage)
+        let data = previewImage.pngData()
+        let length = data!.count
+        let byteData = malloc(length)!
+        print(byteData)
         self.previewImageView.image = previewImage
+
+
     }
     /*
     // MARK: - Navigation
