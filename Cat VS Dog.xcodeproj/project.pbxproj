@@ -78,6 +78,7 @@
 			children = (
 				869191F32460EFFD00C24C64 /* ViewController.swift */,
 				8691920A24618DC900C24C64 /* ImageViewController.swift */,
+				869192032460F03E00C24C64 /* classifier.mlmodel */,
 				869192052460F2E100C24C64 /* CameraViewController.swift */,
 			);
 			path = Controller;
@@ -95,7 +96,6 @@
 		869192092460F33500C24C64 /* MLModel */ = {
 			isa = PBXGroup;
 			children = (
-				869192032460F03E00C24C64 /* classifier.mlmodel */,
 			);
 			path = MLModel;
 			sourceTree = "<group>";

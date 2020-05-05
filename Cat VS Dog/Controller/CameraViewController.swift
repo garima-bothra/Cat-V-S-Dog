@@ -54,12 +54,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
 
     func resizedImageWith(image: UIImage) -> UIImage {
-
-        let imageSize = image.size
-        let newWidth  =  64 / image.size.width
-        let newHeight = 64 / image.size.height
-        var newSize: CGSize
-        newSize = CGSize(width: 64,  height: 64)
+        let newSize = CGSize(width: 64,  height: 64)
         let rect = CGRect(x: 0, y: 0, width: 64, height: 64)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.draw(in: rect)
@@ -117,7 +112,7 @@ extension CameraViewController {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
             photoOutput = AVCapturePhotoOutput()
-            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])], completionHandler: nil)
+            photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
             captureSession.addOutput(photoOutput!)
         } catch {
             print(error)
