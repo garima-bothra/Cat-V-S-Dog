@@ -62,14 +62,34 @@
                     <view key="view" contentMode="scaleToFill" id="ZNR-Vc-XLi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXs-V6-9FI">
+                                <rect key="frame" x="167" y="752" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="0xx-VA-698"/>
+                                    <constraint firstAttribute="width" secondItem="SXs-V6-9FI" secondAttribute="height" multiplier="1:1" id="as6-DY-aFJ"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="cameraButtonPressed:" destination="O1H-C9-h8I" eventType="touchUpInside" id="jRy-fl-Z4c"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SXs-V6-9FI" firstAttribute="centerX" secondItem="2dj-6x-joj" secondAttribute="centerX" id="b2u-5q-Nyy"/>
+                            <constraint firstItem="2dj-6x-joj" firstAttribute="bottom" secondItem="SXs-V6-9FI" secondAttribute="bottom" constant="30" id="zGS-dh-kEN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2dj-6x-joj"/>
                     </view>
                     <navigationItem key="navigationItem" id="vOA-Z1-Wrx"/>
+                    <connections>
+                        <outlet property="cameraButton" destination="SXs-V6-9FI" id="5XN-SX-f8z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8a-CG-aN6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="381" y="131"/>
+            <point key="canvasLocation" x="379.71014492753625" y="130.58035714285714"/>
         </scene>
     </scenes>
 </document>

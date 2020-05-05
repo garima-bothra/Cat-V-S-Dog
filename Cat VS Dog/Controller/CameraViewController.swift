@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AVFoundation
+import AVKit
 
 class CameraViewController: UIViewController {
 
@@ -18,9 +18,11 @@ class CameraViewController: UIViewController {
     var currentCamera: AVCaptureDevice?
     var photoOutput: AVCapturePhotoOutput?
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
-
+    // Create outlets
+    @IBOutlet weak var cameraButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        cameraButton.layer.cornerRadius = cameraButton.frame.height/2
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
@@ -32,6 +34,25 @@ class CameraViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func cameraButtonPressed(_ sender: Any) {
+        let photoSettings: AVCapturePhotoSettings
+        if ((self.photoOutput?.availablePhotoCodecTypes.contains(.hevc)) != nil) {
+            photoSettings = AVCapturePhotoSettings(format:
+                [AVVideoCodecKey: AVVideoCodecType.hevc])
+        } else {
+            photoSettings = AVCapturePhotoSettings()
+        }
+        photoSettings.flashMode = .auto
+        photoSettings.isAutoStillImageStabilizationEnabled =
+            ((self.photoOutput?.isStillImageStabilizationSupported) != nil)
+      //  let captureProcessor = PhotoCaptureProcessor()
+      //  self.photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)
+
+    }
+
+}
+
+extension CameraViewController {
     func setupCaptureSession() {
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
     }
@@ -100,23 +121,9 @@ class CameraViewController: UIViewController {
 
     // Get mask size respect to screen size
        private func getMaskSize() -> CGRect {
-           let viewWidth = view.frame.width
-           let rectwidth = viewWidth - 64
-           let halfWidth = rectwidth/2
            let x = view.center.x
            let y = view.center.y 
            return CGRect(x: x, y: y, width: 64, height: 64)
        }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
