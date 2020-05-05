@@ -13,6 +13,8 @@
 		869191F72460EFFD00C24C64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869191F52460EFFD00C24C64 /* Main.storyboard */; };
 		869191F92460EFFF00C24C64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 869191F82460EFFF00C24C64 /* Assets.xcassets */; };
 		869191FC2460EFFF00C24C64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869191FA2460EFFF00C24C64 /* LaunchScreen.storyboard */; };
+		869192042460F03E00C24C64 /* classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 869192032460F03E00C24C64 /* classifier.mlmodel */; };
+		869192062460F2E100C24C64 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869192052460F2E100C24C64 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		869191F82460EFFF00C24C64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		869191FB2460EFFF00C24C64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		869191FD2460EFFF00C24C64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		869192032460F03E00C24C64 /* classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = classifier.mlmodel; sourceTree = "<group>"; };
+		869192052460F2E100C24C64 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +62,39 @@
 			children = (
 				869191EF2460EFFD00C24C64 /* AppDelegate.swift */,
 				869191F12460EFFD00C24C64 /* SceneDelegate.swift */,
-				869191F32460EFFD00C24C64 /* ViewController.swift */,
-				869191F52460EFFD00C24C64 /* Main.storyboard */,
+				869192072460F2FD00C24C64 /* Controller */,
+				869192082460F32200C24C64 /* View */,
 				869191F82460EFFF00C24C64 /* Assets.xcassets */,
-				869191FA2460EFFF00C24C64 /* LaunchScreen.storyboard */,
 				869191FD2460EFFF00C24C64 /* Info.plist */,
+				869192092460F33500C24C64 /* MLModel */,
 			);
 			path = "Cat VS Dog";
+			sourceTree = "<group>";
+		};
+		869192072460F2FD00C24C64 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				869191F32460EFFD00C24C64 /* ViewController.swift */,
+				869192052460F2E100C24C64 /* CameraViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		869192082460F32200C24C64 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				869191F52460EFFD00C24C64 /* Main.storyboard */,
+				869191FA2460EFFF00C24C64 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		869192092460F33500C24C64 /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				869192032460F03E00C24C64 /* classifier.mlmodel */,
+			);
+			path = MLModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +171,8 @@
 				869191F42460EFFD00C24C64 /* ViewController.swift in Sources */,
 				869191F02460EFFD00C24C64 /* AppDelegate.swift in Sources */,
 				869191F22460EFFD00C24C64 /* SceneDelegate.swift in Sources */,
+				869192042460F03E00C24C64 /* classifier.mlmodel in Sources */,
+				869192062460F2E100C24C64 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
