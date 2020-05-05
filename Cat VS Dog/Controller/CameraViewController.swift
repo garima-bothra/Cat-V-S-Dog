@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import AVKit
+import AVFoundation
 
-class CameraViewController: UITabBarController {
+class CameraViewController: UIViewController {
 
     //Create variables
     var captureSession = AVCaptureSession()
@@ -21,6 +21,13 @@ class CameraViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCaptureSession()
+        setupDevice()
+        setupInputOutput()
+        setupPreviewLayer()
+        startRunningCaptureSession()
+        addBlur()
+
 
         // Do any additional setup after loading the view.
     }
