@@ -11,11 +11,14 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var petImageView: UIImageView!
-    let model = classifier()
+   // let model = classifier()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    @IBAction func cameraButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToCam", sender: Any.self)
     }
 
 

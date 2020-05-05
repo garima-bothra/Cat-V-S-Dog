@@ -39,25 +39,33 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gb5-3g-kes"/>
+                    <navigationItem key="navigationItem" id="gb5-3g-kes">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="QH8-xK-qot">
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="BYZ-38-t0r" id="5oL-pp-T1t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="petImageView" destination="Ou9-Vz-0yp" id="cR8-Kh-sMl"/>
+                        <segue destination="O1H-C9-h8I" kind="show" identifier="goToCam" id="6xn-eJ-195"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-291.304347826087" y="129.91071428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="T9Q-pu-3Dj">
             <objects>
-                <viewController id="O1H-C9-h8I" sceneMemberID="viewController">
+                <viewController id="O1H-C9-h8I" customClass="CameraViewController" customModule="Cat_VS_Dog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZNR-Vc-XLi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="2dj-6x-joj"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vOA-Z1-Wrx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8a-CG-aN6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
