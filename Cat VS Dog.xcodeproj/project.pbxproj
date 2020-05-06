@@ -16,6 +16,7 @@
 		869192062460F2E100C24C64 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869192052460F2E100C24C64 /* CameraViewController.swift */; };
 		8691920B24618DC900C24C64 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691920A24618DC900C24C64 /* ImageViewController.swift */; };
 		8691920D2462D69100C24C64 /* classifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8691920C2462D69100C24C64 /* classifier.mlmodel */; };
+		86A2227124630B8C00FBD9D7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A2227024630B8C00FBD9D7 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		869192052460F2E100C24C64 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		8691920A24618DC900C24C64 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		8691920C2462D69100C24C64 /* classifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = classifier.mlmodel; sourceTree = "<group>"; };
+		86A2227024630B8C00FBD9D7 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				869191EF2460EFFD00C24C64 /* AppDelegate.swift */,
+				86A2227024630B8C00FBD9D7 /* UIImageExtension.swift */,
 				869191F12460EFFD00C24C64 /* SceneDelegate.swift */,
 				869192072460F2FD00C24C64 /* Controller */,
 				869192082460F32200C24C64 /* View */,
@@ -78,7 +81,6 @@
 			children = (
 				869191F32460EFFD00C24C64 /* ViewController.swift */,
 				8691920A24618DC900C24C64 /* ImageViewController.swift */,
-				8691920C2462D69100C24C64 /* classifier.mlmodel */,
 				869192052460F2E100C24C64 /* CameraViewController.swift */,
 			);
 			path = Controller;
@@ -96,6 +98,7 @@
 		869192092460F33500C24C64 /* MLModel */ = {
 			isa = PBXGroup;
 			children = (
+				8691920C2462D69100C24C64 /* classifier.mlmodel */,
 			);
 			path = MLModel;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			files = (
 				869191F42460EFFD00C24C64 /* ViewController.swift in Sources */,
 				869191F02460EFFD00C24C64 /* AppDelegate.swift in Sources */,
+				86A2227124630B8C00FBD9D7 /* UIImageExtension.swift in Sources */,
 				869191F22460EFFD00C24C64 /* SceneDelegate.swift in Sources */,
 				8691920B24618DC900C24C64 /* ImageViewController.swift in Sources */,
 				869192062460F2E100C24C64 /* CameraViewController.swift in Sources */,
