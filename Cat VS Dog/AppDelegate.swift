@@ -15,6 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let launcedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+        if !launcedBefore {
+            UserDefaults.standard.set(0, forKey: "catCount")
+            UserDefaults.standard.set(0, forKey: "dogCount")
+        }
         return true
     }
 

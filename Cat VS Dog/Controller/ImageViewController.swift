@@ -18,7 +18,6 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupImageView()
-        getModelPrediction()
         // Do any additional setup after loading the view.
     }
     
@@ -26,81 +25,31 @@ class ImageViewController: UIViewController {
         self.previewImageView.image = previewImage
     }
 
+    @IBAction func predictItem(_ sender: Any) {
+        getModelPrediction()
+        let storyboard = UIStoryboard(name: "myStoryboardName", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "home") as! ViewController
+        self.present(homeViewController, animated: true)
+    }
+
+    //Function to predict using model and use the output accordingly
+
     func getModelPrediction() {
         let input = previewImage.pixelBuffer()
-
-        print(input)
-        let inputClassify = classifierInput(image: input!)
-        classifier.init()
-        do {
-        try model.prediction(input: inputClassify, options: MLPredictionOptions())
-        } catch {
-            print(error)
-        }
         let prediction = try? model.prediction(image: input!)
-        
-        print(prediction?.classLabel)
-        print(prediction?.output)
-
-
-    }
-
-    func getCVPixelBuffer(_ image: CGImage) -> CVPixelBuffer? {
-        let imageWidth = 64
-        let imageHeight = 64
-
-        let attributes : [NSObject:AnyObject] = [
-            kCVPixelBufferCGImageCompatibilityKey : true as AnyObject,
-            kCVPixelBufferCGBitmapContextCompatibilityKey : true as AnyObject
-        ]
-
-        var pxbuffer: CVPixelBuffer? = nil
-        CVPixelBufferCreate(kCFAllocatorDefault,
-                            imageWidth,
-                            imageHeight,
-                            kCVPixelFormatType_32ARGB,
-                            attributes as CFDictionary?,
-                            &pxbuffer)
-
-        if let _pxbuffer = pxbuffer {
-            let flags = CVPixelBufferLockFlags(rawValue: 0)
-            CVPixelBufferLockBaseAddress(_pxbuffer, flags)
-            let pxdata = CVPixelBufferGetBaseAddress(_pxbuffer)
-
-            let rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-            let context = CGContext(data: pxdata,
-                                    width: imageWidth,
-                                    height: imageHeight,
-                                    bitsPerComponent: 8,
-                                    bytesPerRow: CVPixelBufferGetBytesPerRow(_pxbuffer),
-                                    space: rgbColorSpace,
-                                    bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue)
-
-            if let _context = context {
-                _context.draw(image, in: CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight))
+        for (_, value) in prediction!.output {
+            if value == 0.0 {
+                let catCount = UserDefaults.standard.integer(forKey: "catCount")
+                    UserDefaults.standard.set(catCount + 1, forKey: "catCount")
             }
             else {
-                CVPixelBufferUnlockBaseAddress(_pxbuffer, flags);
-                return nil
+                let dogCount = UserDefaults.standard.integer(forKey: "dogCount")
+                UserDefaults.standard.set(dogCount + 1, forKey: "dogCount")
             }
-
-            CVPixelBufferUnlockBaseAddress(_pxbuffer, flags);
-            return _pxbuffer;
         }
-
-        return nil
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
 extension UIImage {
 
     func pixelBuffer() -> CVPixelBuffer? {

@@ -26,15 +26,22 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Cat_VS_Dog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Cat_VS_Dog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ou9-Vz-0yp">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DP-nC-sYd">
+                                <rect key="frame" x="0.0" y="307" width="414" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -95,32 +102,36 @@
         <!--Image View Controller-->
         <scene sceneID="BIR-Fw-VeD">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x60-m5-D0M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="EVb-HU-HY9" customClass="ImageViewController" customModule="Cat_VS_Dog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S0k-Xe-ttz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AWK-Rk-wlg">
-                                <rect key="frame" x="175" y="416" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="URR-Ba-9jl"/>
-                                    <constraint firstAttribute="height" constant="64" id="hdE-hD-OOM"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="centerX" secondItem="S0k-Xe-ttz" secondAttribute="centerX" id="6OQ-g2-w2i"/>
-                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="centerY" secondItem="S0k-Xe-ttz" secondAttribute="centerY" id="VpK-ea-BiB"/>
+                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="leading" secondItem="v0m-n7-170" secondAttribute="leading" id="7AC-rf-AaX"/>
+                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="top" secondItem="v0m-n7-170" secondAttribute="top" id="Rpk-AY-Xsu"/>
+                            <constraint firstAttribute="bottom" secondItem="AWK-Rk-wlg" secondAttribute="bottom" id="hv6-O9-NIf"/>
+                            <constraint firstItem="AWK-Rk-wlg" firstAttribute="trailing" secondItem="v0m-n7-170" secondAttribute="trailing" id="vLi-o9-Nc9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="v0m-n7-170"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kPc-Vk-WGn"/>
+                    <navigationItem key="navigationItem" id="kPc-Vk-WGn">
+                        <barButtonItem key="rightBarButtonItem" title="Use" id="RBF-7u-SCA">
+                            <connections>
+                                <action selector="predictItem:" destination="EVb-HU-HY9" id="WdS-UF-50s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="previewImageView" destination="AWK-Rk-wlg" id="rlc-4z-rXf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x60-m5-D0M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1098.5507246376812" y="129.91071428571428"/>
         </scene>
