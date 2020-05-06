@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Extension to create pixel buffer to get model input type
 extension UIImage {
 
     func pixelBuffer() -> CVPixelBuffer? {

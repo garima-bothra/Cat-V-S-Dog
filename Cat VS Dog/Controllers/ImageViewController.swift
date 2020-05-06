@@ -10,6 +10,7 @@ import UIKit
 import CoreML
 
 class ImageViewController: UIViewController {
+
     //Create outlets
     @IBOutlet weak var previewImageView: UIImageView!
     //Create variables
@@ -18,13 +19,14 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupImageView()
-        // Do any additional setup after loading the view.
     }
-    
+
+    //Function to present clicked image on screen
     func setupImageView() {
         self.previewImageView.image = previewImage
     }
 
+    //Function to predict and present home screen when user confirms to use image
     @IBAction func predictItem(_ sender: Any) {
 
         getModelPrediction()
@@ -33,6 +35,7 @@ class ImageViewController: UIViewController {
         self.navigationController!.pushViewController(homeViewController, animated: true) 
     }
 
+    //Function to resize image to 64x64
     func resizedImageWith(image: UIImage) -> UIImage {
            let newSize = CGSize(width: 64,  height: 64)
            let rect = CGRect(x: 0, y: 0, width: 64, height: 64)
@@ -43,8 +46,7 @@ class ImageViewController: UIViewController {
            return newImage!
        }
 
-    //Function to predict using model and use the output accordingly
-
+    //Function to predict using model and update the results
     func getModelPrediction() {
         let input = resizedImageWith(image: previewImage).pixelBuffer()
         let prediction = try? model.prediction(image: input!)

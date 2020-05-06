@@ -12,7 +12,7 @@ import AVKit
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
     //Create variables
-    var croppedImage = UIImage()
+    var capturedImage = UIImage()
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
     var frontCamera: AVCaptureDevice?
@@ -29,57 +29,42 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
-        //addBlur()
         cameraButton.layer.cornerRadius = cameraButton.frame.height/2
         cameraButton.backgroundColor = UIColor.white
-
-        // Do any additional setup after loading the view.
     }
 
+    //Capturing image when camera button is pressed
     @IBAction func cameraButtonPressed(_ sender: Any) {
         let settings = AVCapturePhotoSettings()
         photoOutput?.capturePhoto(with: settings, delegate: self)
-
-
     }
+
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
-            print(imageData)
-            croppedImage = UIImage(data: imageData)!
-            //croppedImage = cropImage(image: image!, rect: drawFrame())
-            //croppedImage = resizedImageWith(image: image!)
+            capturedImage = UIImage(data: imageData)!
             self.performSegue(withIdentifier: "goToImageView", sender: nil)
         }
     }
 
-    func cropImage(image: UIImage, rect: CGRect) -> UIImage {
-        let cgImage = image.cgImage!
-        let croppedCGImage = cgImage.cropping(to: rect)
-        return UIImage(cgImage: croppedCGImage!)
-    }
-
-    func drawFrame () -> CGRect {
-        let rectX = self.view.frame.width/2 - 32
-        let rectY = self.view.frame.height/2 - 32
-        // Create a CGRect object which is used to render a rectangle.
-        let rectFrame: CGRect = CGRect(x: rectX, y: rectY, width: 64, height: 64)
-        return rectFrame
-    }
-
+    //Function to send image to next view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       // if segue.identifier == "goToImageView" {
+        if segue.identifier == "goToImageView" {
            let previewController = segue.destination as! ImageViewController
-            previewController.previewImage = croppedImage
-       // }
+            previewController.previewImage = capturedImage
+        }
     }
 }
 
+//MARK: - AVCapturePhotoCaptureDelegate Functions
 extension CameraViewController {
+
+    //Function to setup capture session
     func setupCaptureSession() {
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
     }
 
+    //Function to setup device camera
     func setupDevice() {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
         let devices = deviceDiscoverySession.devices
@@ -87,15 +72,14 @@ extension CameraViewController {
             if device.position == AVCaptureDevice.Position.back {
                 backCamera = device
                 currentCamera = device
-                print(device)
             }
             else if device.position == AVCaptureDevice.Position.front {
                 frontCamera = device
             }
         }
-
     }
 
+    //Function to setup input and output to camera
     func setupInputOutput() {
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
@@ -108,6 +92,7 @@ extension CameraViewController {
         }
     }
 
+    //Function to setup preview layer
     func setupPreviewLayer() {
         cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -116,39 +101,9 @@ extension CameraViewController {
         self.view.layer.insertSublayer(cameraPreviewLayer! , at: 0)
     }
 
+    //Function to start clicking pictures
     func startRunningCaptureSession() {
         captureSession.startRunning()
 
     }
-
-    //Function to add Blur with custom mask
-       func addBlur(){
-           //MARK: Add Blur view
-        let blur = UIBlurEffect(style: .dark)
-           let blurView = UIVisualEffectView(effect: blur)
-        blurView.alpha = 0.7
-           blurView.frame = self.view.bounds
-           blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-           let scanLayer = CAShapeLayer()
-           let maskSize = getMaskSize()
-           let outerPath = UIBezierPath(roundedRect: maskSize, cornerRadius: 20)
-
-           // Add a mask
-           let superlayerPath = UIBezierPath(rect: blurView.frame)
-           outerPath.append(superlayerPath)
-           scanLayer.path = outerPath.cgPath
-           scanLayer.fillRule = .evenOdd
-
-           view.addSubview(blurView)
-           blurView.layer.mask = scanLayer
-       }
-
-    // Get mask size respect to screen size
-       private func getMaskSize() -> CGRect {
-           let x = view.center.x
-           let y = view.center.y 
-           return CGRect(x: x, y: y, width: 64, height: 64)
-       }
-
 }

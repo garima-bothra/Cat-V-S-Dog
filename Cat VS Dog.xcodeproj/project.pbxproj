@@ -65,10 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				869191EF2460EFFD00C24C64 /* AppDelegate.swift */,
-				86A2227024630B8C00FBD9D7 /* UIImageExtension.swift */,
+				86A2227224630C2000FBD9D7 /* Extensions */,
 				869191F12460EFFD00C24C64 /* SceneDelegate.swift */,
-				869192072460F2FD00C24C64 /* Controller */,
-				869192082460F32200C24C64 /* View */,
+				869192072460F2FD00C24C64 /* Controllers */,
+				869192082460F32200C24C64 /* Views */,
 				869191F82460EFFF00C24C64 /* Assets.xcassets */,
 				869191FD2460EFFF00C24C64 /* Info.plist */,
 				869192092460F33500C24C64 /* MLModel */,
@@ -76,23 +76,23 @@
 			path = "Cat VS Dog";
 			sourceTree = "<group>";
 		};
-		869192072460F2FD00C24C64 /* Controller */ = {
+		869192072460F2FD00C24C64 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				869191F32460EFFD00C24C64 /* ViewController.swift */,
 				8691920A24618DC900C24C64 /* ImageViewController.swift */,
 				869192052460F2E100C24C64 /* CameraViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		869192082460F32200C24C64 /* View */ = {
+		869192082460F32200C24C64 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				869191F52460EFFD00C24C64 /* Main.storyboard */,
 				869191FA2460EFFF00C24C64 /* LaunchScreen.storyboard */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		869192092460F33500C24C64 /* MLModel */ = {
@@ -101,6 +101,14 @@
 				8691920C2462D69100C24C64 /* classifier.mlmodel */,
 			);
 			path = MLModel;
+			sourceTree = "<group>";
+		};
+		86A2227224630C2000FBD9D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				86A2227024630B8C00FBD9D7 /* UIImageExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
