@@ -26,25 +26,36 @@ class ImageViewController: UIViewController {
     }
 
     @IBAction func predictItem(_ sender: Any) {
+
         getModelPrediction()
-        let storyboard = UIStoryboard(name: "myStoryboardName", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "home") as! ViewController
-        self.present(homeViewController, animated: true)
+        self.navigationController!.pushViewController(homeViewController, animated: true) 
     }
+
+    func resizedImageWith(image: UIImage) -> UIImage {
+           let newSize = CGSize(width: 64,  height: 64)
+           let rect = CGRect(x: 0, y: 0, width: 64, height: 64)
+           UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+           image.draw(in: rect)
+           let newImage = UIGraphicsGetImageFromCurrentImageContext()
+           UIGraphicsEndImageContext()
+           return newImage!
+       }
 
     //Function to predict using model and use the output accordingly
 
     func getModelPrediction() {
-        let input = previewImage.pixelBuffer()
+        let input = resizedImageWith(image: previewImage).pixelBuffer()
         let prediction = try? model.prediction(image: input!)
         for (_, value) in prediction!.output {
             if value == 0.0 {
-                let catCount = UserDefaults.standard.integer(forKey: "catCount")
-                    UserDefaults.standard.set(catCount + 1, forKey: "catCount")
+                let catsCount = UserDefaults.standard.integer(forKey: "catCount") + 1
+                    UserDefaults.standard.set(catsCount, forKey: "catCount")
             }
             else {
-                let dogCount = UserDefaults.standard.integer(forKey: "dogCount")
-                UserDefaults.standard.set(dogCount + 1, forKey: "dogCount")
+                let dogCount = UserDefaults.standard.integer(forKey: "dogCount") + 1
+                UserDefaults.standard.set(dogCount, forKey: "dogCount")
             }
         }
     }

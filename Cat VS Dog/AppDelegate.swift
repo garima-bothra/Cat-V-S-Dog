@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !launcedBefore {
             UserDefaults.standard.set(0, forKey: "catCount")
             UserDefaults.standard.set(0, forKey: "dogCount")
+            UserDefaults.standard.set(true,forKey: "hasLaunchedBefore")
         }
         return true
     }

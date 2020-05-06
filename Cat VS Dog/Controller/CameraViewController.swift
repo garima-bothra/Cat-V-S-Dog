@@ -46,21 +46,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
             print(imageData)
-            let image = UIImage(data: imageData)
+            croppedImage = UIImage(data: imageData)!
             //croppedImage = cropImage(image: image!, rect: drawFrame())
-            croppedImage = resizedImageWith(image: image!)
+            //croppedImage = resizedImageWith(image: image!)
             self.performSegue(withIdentifier: "goToImageView", sender: nil)
         }
-    }
-
-    func resizedImageWith(image: UIImage) -> UIImage {
-        let newSize = CGSize(width: 64,  height: 64)
-        let rect = CGRect(x: 0, y: 0, width: 64, height: 64)
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
     }
 
     func cropImage(image: UIImage, rect: CGRect) -> UIImage {
@@ -80,7 +70,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        // if segue.identifier == "goToImageView" {
            let previewController = segue.destination as! ImageViewController
-            print(croppedImage)
             previewController.previewImage = croppedImage
        // }
     }
