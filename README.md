@@ -38,6 +38,11 @@ App to classify the user as dog lover or cat lover
  ## Author 👩‍💻 ##
  [Garima Bothra](https://github.com/garima94921)
  
+  ## How to Contribute 🖋 ##
+ * Run the app - Steps are mentioned above.
+ * If you face issues in any step open a new issue.
+ * To fix issues: Fork this repository, make your changes and make a Pull Request.
+ 
  ## Credits ##
 
  The ML Model used for this project was made by [Iishi Patel](https://github.com/iishipatel). You can check it [here](https://github.com/iishipatel/Cats-Dogs-Classifier).
