@@ -42,4 +42,4 @@ App to classify the user as dog lover or cat lover
  
  ## Credits ##
 
- The ML Model used for this project was made by Iishi Patel(https://github.com/iishipatel/Cats-Dogs-Classifier).
+ The ML Model used for this project was made by [Iishi Patel](https://github.com/iishipatel). You can check it [here](https://github.com/iishipatel/Cats-Dogs-Classifier).
