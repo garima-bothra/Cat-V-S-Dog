@@ -33,10 +33,6 @@ App to classify the user as dog lover or cat lover
  * AVKit
  * CoreML
  
- ## App Screenshots 📸 ##
- 
-
- 
  ## Author 👩‍💻 ##
  [Garima Bothra](https://github.com/garima94921)
  
