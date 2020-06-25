@@ -32,6 +32,9 @@ App to classify the user as dog lover or cat lover
  * AVKit
  * CoreML
  
+ ## License ⚖️ ##
+ Please read the [LICENSE](../master/LICENSE) file for details.
+ 
  ## Author 👩‍💻 ##
  [Garima Bothra](https://github.com/garima94921)
  
