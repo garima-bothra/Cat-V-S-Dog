@@ -1,4 +1,45 @@
-# Cat V/S Dog
-Implementation of Cat/Dog classifier in an iOS App. 
-This application is made in Swift and uses CoreML, AVKit and UIKit.
-The ML Model used for this project was made by Iishi Patel(https://github.com/iishipatel/Cats-Dogs-Classifier).
+# Cat V/S Dog #
+
+App to classify the user as dog lover or cat lover
+
+<p>
+<img alt="iOS" src="https://img.shields.io/badge/platform-iOS-blue">
+<img alt="Swift" src="https://img.shields.io/badge/Swift-5-brightgreen">
+<img alt="XCode" src="https://img.shields.io/badge/XCode-11-blueviolet">
+<img alt="iOS" src="https://img.shields.io/badge/iOS-13-orange">
+</p>
+
+## Introduction ##
+
+ This app uses a custom ML model to identify if the image clicked is of a dog or a cat and counts the number of cats and dogs clicked. On the basis of that count it classifies a user as a cat lover or a dog lover. ✨
+
+ ## Steps to run 📲 ##
+ * Clone or download the app from this repository. 👩‍💻
+ * Open project file in terminal. 💻
+ * Run `pod intall` to install all dependencies. 📥
+ * Open the `catvsdog.workspace` file. 💾
+ * Change the bundle identifier. ⚙️
+ * Press `Ctrl + R` to run the app. 📲
+ * Do star this repo and/or contribute if you like it.🙂
+ 
+ ## How to use  ##
+ * As soon as you open the app, you see your count history of number of cats and dogs. 😸
+ * Click on the camera button to click an image of the pet. 📸
+ * Confirm the image upon clicking. 🖼
+ * You'll be taken back to the first screen with updated results. 😁
+ 
+ ## Libraries used in the project 📥 ##
+ * UIKit
+ * AVKit
+ * CoreML
+ 
+ ## App Screenshots 📸 ##
+ 
+
+ 
+ ## Author 👩‍💻 ##
+ [Garima Bothra](https://github.com/garima94921)
+ 
+ ## Credits ##
+
+ The ML Model used for this project was made by Iishi Patel(https://github.com/iishipatel/Cats-Dogs-Classifier).
